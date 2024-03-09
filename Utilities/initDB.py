@@ -1,7 +1,7 @@
 
 from glob import glob
 import pandas as pd
-from AisDb.Utilities.Helpers import Helpers
+from AisDb.Parsing.Helpers import Helpers
 from AisDb.Models import *
 from AisDb.Models.ShipCommonData import ShipCommonData
 from AisDb.Models.PositionReport import PositionReport
