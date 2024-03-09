@@ -1,0 +1,12 @@
+
+# python regular ignores
+__pycache__
+*.pyc
+*.pyo
+
+
+
+
+
+
+
