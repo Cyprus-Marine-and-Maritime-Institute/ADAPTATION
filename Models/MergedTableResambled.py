@@ -4,8 +4,8 @@ from . import Base
 class MergedTableResambled(Base):
     __tablename__ = "mergedtableresambled"
     MergedTableResambledID = Column(Integer, primary_key=True, autoincrement=True)
-    PositionReportID = Column(Integer, ForeignKey('positionreport.PositionReportID'), index=True)
-    ShipStaticDataID = Column(Integer, ForeignKey('shipstaticdata.ShipStaticDataID'), index=True)
+    PositionReportID = Column(UUID, ForeignKey('positionreport.PositionReportID'), index=True)
+    ShipStaticDataID = Column(UUID, ForeignKey('shipstaticdata.ShipStaticDataID'), index=True)
     ShipCommonDataID = Column(UUID(as_uuid=True), ForeignKey('shipcommondata.ShipCommonDataID'), index=True)
     MMSI = Column(Integer)
     MessageType = Column(String(255))

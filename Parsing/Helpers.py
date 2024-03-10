@@ -4,7 +4,7 @@ import uuid
 import dateutil.parser as parser
 import sys
 import os
-from .dataClasses import PositionReport, ShipStaticData, StandardClassBPositionReport, StaticDataReport,Dimension, Eta, ReportA, ReportB
+from .dataClasses import PositionReport as pr, ShipStaticData as ssd, StandardClassBPositionReport as scBp, StaticDataReport as sdr,Dimension as dm, Eta as eta, ReportA as RA, ReportB as RB
 from dotenv import load_dotenv
 import traceback
 load_dotenv()
@@ -368,7 +368,6 @@ class Helpers:
     def getSelf(self):
         return self
     def insert_data(self,key,id,engine_=None,g=None):
-
         if g is None:
             print("No file: ",key)
             return
@@ -390,61 +389,96 @@ class Helpers:
         df_=df[cols[1:]]
         # print(f"Inserting: {len(df_)} {key}")
         df_=df_.replace({pd.NaT: None})
-        
+        print("LEN:",len(df_))
         # print(df_.head())
 
         timestamp = datetime.now().strftime("%Y-%m-%d")
+        today = datetime.now().strftime("%d")
         if key== "PositionReport":
             # check if valid
+            rename_dict = {
+                    'MetaData.MMSI_String': 'MMSI_String',
+                    'MetaData.latitude': 'MetaData_latitude',
+                    'MetaData.longitude': 'MetaData_longitude',
+                }
+            print("Inserting: ",key)
+            df_for_insert=df.copy().rename(columns=rename_dict)
             position_report_instances = [
-                PositionReport(**row.to_dict())
-                for _, row in df.iterrows()
+                pr(**row.to_dict())
+                for _, row in df_for_insert.iterrows()
             ]
             valid=[i.is_valid() for i in position_report_instances]
+            for i,v in enumerate(valid):
+                if not v:
+                    print("Invalid: ",df.iloc[i])
             if False in valid:
+                
                 df.to_csv(f"{LOGS_PATH}/failed_inserts_{key}_{today}_{timestamp}.csv",index=False)
-            return 0
+                return len(df_)
 
         elif key=="ShipStaticData":
             # check if valid
-
+            rename_dict = {
+                        'Message.ShipStaticData.UserID': 'UserID',
+                        'MetaData.MMSI_String': 'MMSI_String',
+                        'ShipType': 'ShipType',  # Assuming 'ShipType' corresponds to the 'Type' field in the data class
+                        'MetaData.latitude': 'MetaData_latitude',
+                        'MetaData.longitude': 'MetaData_longitude',
+                }
+            print("Inserting: ",key)
+            df_for_insert=df.copy().rename(columns=rename_dict)
             ship_static_data_instances = [
-                ShipStaticData(
-                    **{k: v for k, v in row.to_dict().items() if k not in ['A', 'B', 'C', 'D', 'Day', 'Hour', 'Minute', 'Month']},
-                    Dimension=Dimension(A=row['A'], B=row['B'], C=row['C'], D=row['D']),
-                    Eta=Eta(Day=row['Day'], Hour=row['Hour'], Minute=row['Minute'], Month=row['Month'])
+                ssd(
+                    **{k: v for k, v in row.to_dict().items() if k not in ['DimensionA', 'DimensionB', 'DimensionC', 'DimensionD', 'EtaDay', 'EtaHour', 'EtaMinute', 'EtaMonth']},
+                    Dimension=dm(A=row['DimensionA'], B=row['DimensionB'], C=row['DimensionC'], D=row['DimensionD']),
+                    Eta=eta(Day=row['EtaDay'], Hour=row['EtaHour'], Minute=row['EtaMinute'], Month=row['EtaMonth'])
                 )
-                for i, row in df_.iterrows()
+                for i, row in df_for_insert.iterrows()
             ]
+
 
             valid=[i.is_valid() for i in ship_static_data_instances]
+            for i,v in enumerate(valid):
+                if not v:
+                    print(f"{key}_Invalid: ",df_.iloc[i])
             if False in valid:
                 # write the df to file failed
-
                 df.to_csv(f"{LOGS_PATH}/failed_inserts_{key}_{today}_{timestamp}.csv",index=False)
-                return 0
+                return len(df_)
         elif key== "StandardClassBPositionReport":
+            # check if valid
+            rename_dict = {
+                    'Message.StandardClassBPositionReport.Latitude': 'Latitude',
+                    'Message.StandardClassBPositionReport.Longitude': 'Longitude',
+                    'Message.StandardClassBPositionReport.UserID': 'UserID',
+                    'MetaData.MMSI_String': 'MMSI_String',
+                    'MetaData.latitude': 'MetaData_latitude',
+                    'MetaData.longitude': 'MetaData_longitude',
+                }
+            print("Inserting: ",key)
+            df_for_insert=df.copy().rename(columns=rename_dict)
             standard_class_B_position_report = [
-                StandardClassBPositionReport(**row.to_dict())
-                for _, row in df.iterrows()
+                scBp(**row.to_dict())
+                for _, row in df_for_insert.iterrows()
             ]
-
-
             valid=[i.is_valid() for i in standard_class_B_position_report]
+            for i,v in enumerate(valid):
+                if not v:
+                    print(f"{key}_Invalid: ",df_.iloc[i])
             if False in valid:
                 # write the df to file failed
                 df.to_csv(f"{LOGS_PATH}/failed_inserts_{key}_{today}_{timestamp}.csv",index=False)
-                return 0
+                return len(df_)
 
 
         elif key=="StaticDataReport":
             static_data_reports = []
             for _, row in df.iterrows():
-                report_a = ReportA(Name=row['Name'], Valid=row['Valid']) if 'Name' in row else None
+                report_a = RA(Name=row['Name'], Valid=row['Valid']) if 'Name' in row else None
                 report_b = None
                 if 'CallSign' in row and 'A' in row and 'B' in row and 'C' in row and 'D' in row:
-                    dimension = Dimension(A=row['A'], B=row['B'], C=row['C'], D=row['D'])
-                    report_b = ReportB(
+                    dimension = dm(A=row['A'], B=row['B'], C=row['C'], D=row['D'])
+                    report_b = RB(
                         CallSign=row['CallSign'],
                         Dimension=dimension,
                         FixType=row['FixType'],
@@ -455,7 +489,7 @@ class Helpers:
                         VendorIDName=row['VendorIDName'],
                         Valid=row['Valid']
                     )
-                static_data_report = StaticDataReport(
+                static_data_report = sdr(
                     MessageID=row['MessageID'],
                     PartNumber=row['PartNumber'],
                     RepeatIndicator=row['RepeatIndicator'],
@@ -468,10 +502,13 @@ class Helpers:
                 static_data_reports.append(static_data_report)
 
             valid=[i.is_valid() for i in static_data_reports]
+            for i,v in enumerate(valid):
+                if not v:
+                    print(f"{key}_Invalid: ",df_.iloc[i])
             if False in valid:
                 # write the df to file failed
                 df.to_csv(f"{LOGS_PATH}/failed_inserts_{key}_{today}_{timestamp}.csv",index=False)
-                return 0
+                return len(df_)
         try:
             if key in Helpers.common_types:
                 try:

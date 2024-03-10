@@ -1,10 +1,11 @@
 from . import *
 from . import Base
+from . import ShipCommonData
 class PositionReport(Base):
     __tablename__ = "positionreport"
 
-    PositionReportID = Column(Integer, primary_key=True, autoincrement=True)
-    ShipCommonDataID = Column(UUID(as_uuid=True), ForeignKey('shipcommondata.ShipCommonDataID'))
+    PositionReportID = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    ShipCommonDataID = Column(UUID(as_uuid=True), ForeignKey(ShipCommonData.ShipCommonData.ShipCommonDataID))
     Cog = Column(Float)
     CommunicationState = Column(Integer)
     NavigationalStatus = Column(Integer)

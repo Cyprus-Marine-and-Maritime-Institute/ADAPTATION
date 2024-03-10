@@ -24,4 +24,3 @@ class AddressedSafetyMessage(Base):
     idx_addressedsafetymessage_time_utc = Index('idx_addressedsafetysessage_time_utc', TimeUtc)
     idx_addressedsafetymessage_geom = Index('idx_addressedsafetymessage_geom', Geom,postgresql_using='gist')
     idx_addressedsafetymessage_mmsi = Index('idx_sddressedsafetymessage_mmsi', MMSI)
-

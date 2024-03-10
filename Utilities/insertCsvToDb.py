@@ -16,7 +16,7 @@ SYS_PATH=os.getenv("SYS_PATH")
 sys.path.insert(0, f"{SYS_PATH}")
 
 
-from AisDb.Utilities.Helpers import Helpers
+from AisDb.Parsing.Helpers import Helpers
 from AisDb.Models import *
 from AisDb.Models.ShipCommonData import ShipCommonData
 from AisDb.Models.PositionReport import PositionReport

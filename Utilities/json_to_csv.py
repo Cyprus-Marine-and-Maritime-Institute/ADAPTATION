@@ -1,5 +1,5 @@
 
-from AisDb.Utilities.Helpers import Helpers
+from Parsing.Helpers import Helpers
 from tqdm import tqdm
 import json
 import yaml

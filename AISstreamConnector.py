@@ -11,7 +11,8 @@ import time
 from datetime import datetime
 import os
 import traceback
-from json_to_csv import jsonToCsv
+from Utilities.json_to_csv import jsonToCsv
+
 from dotenv import load_dotenv
 import os
 from sqlalchemy import create_engine
@@ -20,12 +21,22 @@ from AisDb.Models import *
 from glob import glob
 from sqlalchemy.orm import sessionmaker
 import logging
-from AisDb.Utilities.Helpers import Helpers
+from AisDb.Parsing.Helpers import Helpers
 import pandas as pd
 
 
 # Configure the logging system
-load_dotenv()
+dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
+print(dotenv_path)
+print(os.getcwd())
+def clear_environment_variables():
+    keys = list(os.environ.keys())
+    for key in keys:
+        del os.environ[key]
+
+# Clear existing environment variables
+clear_environment_variables()
+load_dotenv(dotenv_path=dotenv_path)
 DATABASE_NAME = os.getenv("DATABASE_NAME")
 DATABASE_USER = os.getenv("DATABASE_USER")
 DATABASE_PASSWORD = os.getenv("DATABASE_PASSWORD")
@@ -74,9 +85,15 @@ class AISstream():
         self.temp_data_index = 0
         self.subscribe_message_id = uuid.uuid4()
         self.subscribe_message["SubscribeMessageID"]=self.subscribe_message_id
+        print(f"Subscribing with message: {self.subscribe_message}")
+        print(f"Database: {DATABASE_NAME}")
+        print(f"User: {DATABASE_USER}")
+        print(f"Password: {DATABASE_PASSWORD}")
+        print(f"Host: {DATABASE_HOST}")
         self.db_name,self.engine=Helpers.getEngine(db_name=DATABASE_NAME,user=DATABASE_USER,password=DATABASE_PASSWORD,host=DATABASE_HOST,port=DATABASE_PORT)
         print(f"Connected to database: {self.db_name}")
         logging.info(f"Connected to database: {self.db_name}")
+        self.helper=Helpers()
 
 
         Session = sessionmaker(bind=self.engine)()
@@ -238,12 +255,13 @@ class AISstream():
                     key, value = next(iter(p.items()))  # This safely gets the first key-value pair
                     count1=sessionmaker(bind=engine)().query(Helpers.model_classes[key]).count()
                     # print(f"Count {key}: ",count1)
-                    lenth=0
+                    length=0
                     if value is not None:
                         value.replace("\\","/")
                         print("Inserting: \n",value)
                         
-                        lenth=Helpers.insert_data(key, subscribe_message_id,engine_=engine,g=value)
+                        # lenth = Helpers.insert_data(key,subscribe_message_id,engine_=engine,g=value)
+                        length = self.helper.insert_data(key=key,id=subscribe_message_id,engine_=engine,g=value)
                         try:
                             pass
                         except Exception as e:
@@ -253,7 +271,7 @@ class AISstream():
 
                 count=sessionmaker(bind=engine)().query(Helpers.model_classes[key]).count()
                 # print(f"Count {key}: ",count)
-                print(f"Should have incresed by {lenth} but {key} increased by ",count-count1)
+                print(f"Should have incresed by {length} but {key} increased by ",count-count1)
             
             self.clearArr(temp_data_index)
 
@@ -263,22 +281,28 @@ if __name__ == "__main__":
     ports_cords=json.load(f)
     f.close()
     # print(ports_cords)
-    index = os.sys.argv.index("--ports")+1
-    ports=[]
-    port_names=[]
+    # try to get index if not found default ports
+    try:
+        index = os.sys.argv.index("--ports")+1
+        ports=[]
+        port_names=[]
 
-    while index < len(os.sys.argv) and not os.sys.argv[index].startswith("--"):
-        try:
-            ports.append(ports_cords[os.sys.argv[index]])
-            port_names.append(os.sys.argv[index])
-        except:
-            print("Port not found: "+os.sys.argv[index])
-            exit()
-        index += 1
+        while index < len(os.sys.argv) and not os.sys.argv[index].startswith("--"):
+            try:
+                ports.append(ports_cords[os.sys.argv[index]])
+                port_names.append(os.sys.argv[index])
+            except:
+                print("Port not found: "+os.sys.argv[index])
+                exit()
+            index += 1
 
-    print(ports)
+        print(ports)
+    except:
+        ports=[port for port in ports_cords.values()]
+        port_names=[port for port in ports_cords.keys()]
+    api_key = os.getenv("API_KEY")
     subscribe_message = {
-            "APIKey": "66e9b3986ecfcefc645e9522afea2468d4e1de82",
+            "APIKey": api_key,
             # "BoundingBoxes": [[[25.835302, -80.207729], [25.602700, -79.879297]], [[33.772292, -118.356139], [33.673490, -118.095731]] ],
             "BoundingBoxes": ports, # Limassol Port
             # "FiltersShipMMSI": ["368207620", "367719770", "211476060"],
@@ -288,4 +312,4 @@ if __name__ == "__main__":
     print(subscribe_message)
     logging.info("Starting AISstreamConnector")
     logging.info("Subscribing to: "+str(subscribe_message["Name"]))
-    AISstream(subscribe_message,5000).connect()
+    AISstream(subscribe_message,50).connect()

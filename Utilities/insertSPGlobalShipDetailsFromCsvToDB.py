@@ -2,7 +2,7 @@ import os
 import pandas as pd
 import sqlalchemy
 import psycopg2
-from Helpers import Helpers
+from AisDb.Parsing.Helpers import Helpers
 from dotenv import load_dotenv
 from AisDb.Models.SPGlobalShipDetails import SPGlobalShipDetails
 from glob import glob

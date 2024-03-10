@@ -1,5 +1,5 @@
 from dotenv import load_dotenv
-from AisDb.Utilities.Helpers import Helpers
+from AisDb.Parsing.Helpers import Helpers
 from tqdm import tqdm
 import json
 import yaml
