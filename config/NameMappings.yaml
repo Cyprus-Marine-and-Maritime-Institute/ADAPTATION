@@ -1,0 +1,244 @@
+# Maps the names of the fields in the AIS messages to the names of the fields in the database
+
+DataLinkManagementMessage_mapping:
+  MetaData.MMSI: MMSI
+  MessageType: MessageType
+  Message.DataLinkManagementMessage.RepeatIndicator: RepeatIndicator
+  MetaData.ShipName: ShipName
+  Geom: Geom
+  MetaData.time_utc: TimeUtc
+  SubscribeMessageID: SubscribeMessageID
+  data_hash: data_hash
+  Message.DataLinkManagementMessage.MessageID: MessageID
+  Message.DataLinkManagementMessage.Spare: Spare
+  Message.DataLinkManagementMessage.Valid: Valid
+  Message.DataLinkManagementMessage.Data.0.Increment: Increment1
+  Message.DataLinkManagementMessage.Data.0.Offset: Offset1
+  Message.DataLinkManagementMessage.Data.0.TimeOut: TimeOut1
+  Message.DataLinkManagementMessage.Data.0.Valid: Valid1
+  Message.DataLinkManagementMessage.Data.0.integerOfSlots: integerOfSlots1
+  Message.DataLinkManagementMessage.Data.1.Increment: Increment2
+  Message.DataLinkManagementMessage.Data.1.Offset: Offset2
+  Message.DataLinkManagementMessage.Data.1.TimeOut: TimeOut2
+  Message.DataLinkManagementMessage.Data.1.Valid: Valid2
+  Message.DataLinkManagementMessage.Data.1.integerOfSlots: integerOfSlots2
+  Message.DataLinkManagementMessage.Data.2.Increment: Increment3
+  Message.DataLinkManagementMessage.Data.2.Offset: Offset3
+  Message.DataLinkManagementMessage.Data.2.TimeOut: TimeOut3
+  Message.DataLinkManagementMessage.Data.2.Valid: Valid3
+  Message.DataLinkManagementMessage.Data.2.integerOfSlots: integerOfSlots3
+  Message.DataLinkManagementMessage.Data.3.Increment: Increment4
+  Message.DataLinkManagementMessage.Data.3.Offset: Offset4
+  Message.DataLinkManagementMessage.Data.3.TimeOut: TimeOut4
+  Message.DataLinkManagementMessage.Data.3.Valid: Valid4
+  Message.DataLinkManagementMessage.Data.3.integerOfSlots: integerOfSlots4
+  MetaData.latitude: latitude
+  MetaData.longitude: longitude
+  
+
+BaseStationReport_mapping:
+  MessageType: MessageType
+  Message.BaseStationReport.CommunicationState: CommunicationState
+  Message.BaseStationReport.FixType: FixType
+  Message.BaseStationReport.Latitude: Latitude
+  Message.BaseStationReport.LongRangeEnable: LongRangeEnable
+  Message.BaseStationReport.Longitude: Longitude
+  Message.BaseStationReport.MessageID: MessageID
+  Message.BaseStationReport.PositionAccuracy: PositionAccuracy
+  Message.BaseStationReport.Raim: Raim
+  Message.BaseStationReport.RepeatIndicator: RepeatIndicator
+  Message.BaseStationReport.Spare: Spare
+  Message.BaseStationReport.UserID: UserID
+  Message.BaseStationReport.UtcDay: UtcDay
+  Message.BaseStationReport.UtcHour: UtcHour
+  Message.BaseStationReport.UtcMinute: UtcMinute
+  Message.BaseStationReport.UtcMonth: UtcMonth
+  Message.BaseStationReport.UtcSecond: UtcSecond
+  Message.BaseStationReport.UtcYear: UtcYear
+  Message.BaseStationReport.Valid: Valid
+  MetaData.MMSI: MMSI
+  MetaData.MMSI_String: MMSI_String
+  MetaData.ShipName: ShipName
+  MetaData.latitude: latitude
+  MetaData.longitude: longitude
+  TimeUtc: TimeUtc
+  SubscribeMessageID: SubscribeMessageID
+  Geom: Geom
+  BaseStationReportID: BaseStationReportID
+
+
+AidsToNavigationReport_mapping:
+  MetaData.MMSI: MMSI
+  MessageType: MessageType
+  MetaData.ShipName: ShipName
+  MetaData.time_utc: TimeUtc
+  SubscribeMessageID: SubscribeMessageID
+  Message.AidsToNavigationReport.MessageID: MessageID
+  Message.AidsToNavigationReport.AssignedMode: AssignedMode
+  Message.AidsToNavigationReport.AtoN: AtoN
+  Message.AidsToNavigationReport.Dimension.A: DimensionA
+  Message.AidsToNavigationReport.Dimension.B: DimensionB
+  Message.AidsToNavigationReport.Dimension.C: DimensionC
+  Message.AidsToNavigationReport.Dimension.D: DimensionD
+  Message.AidsToNavigationReport.Fixtype: Fixtype
+  Message.AidsToNavigationReport.Latitude: Latitude
+  Message.AidsToNavigationReport.Longitude: Longitude
+  Geom: Geom
+  Message.AidsToNavigationReport.Name: Name
+  Message.AidsToNavigationReport.NameExtension: NameExtension
+  Message.AidsToNavigationReport.OffPosition: OffPosition
+  Message.AidsToNavigationReport.PositionAccuracy: PositionAccuracy
+  Message.AidsToNavigationReport.Raim: Raim
+  Message.AidsToNavigationReport.RepeatIndicator: RepeatIndicator
+  Message.AidsToNavigationReport.Spare: Spare
+  Message.AidsToNavigationReport.Timestamp: Timestamp
+  Message.AidsToNavigationReport.Type: Type
+  Message.AidsToNavigationReport.Valid: Valid
+  Message.AidsToNavigationReport.VirtualAtoN: VirtualAtoN
+  AidsToNavigationReportID: AidsToNavigationReportID
+
+AddressedSafetyMessage_mapping:
+  MessageType: MessageType
+  Message.AddressedSafetyMessage.DestinationID: DestinationID
+  Message.AddressedSafetyMessage.MessageID: MessageID
+  Message.AddressedSafetyMessage.RepeatIndicator: RepeatIndicator
+  Message.AddressedSafetyMessage.Retransmission: Retransmission
+  Message.AddressedSafetyMessage.Sequenceinteger: Sequenceinteger
+  Message.AddressedSafetyMessage.Spare: Spare
+  Message.AddressedSafetyMessage.Text: Text
+  Message.AddressedSafetyMessage.UserID: UserID
+  Message.AddressedSafetyMessage.Valid: Valid
+  MetaData.MMSI: MMSI
+  MetaData.MMSI_String: MMSI_String
+  MetaData.ShipName: ShipName
+  MetaData.latitude: latitude
+  MetaData.longitude: longitude
+  TimeUtc: TimeUtc
+  SubscribeMessageID: SubscribeMessageID
+  Geom: Geom
+  AddressedSafetyMessageID: AddressedSafetyMessageID
+
+
+
+
+PositionReport_mapping:
+  ShipCommonDataID: ShipCommonDataID
+  MetaData.MMSI: MMSI
+  MetaData.ShipName: ShipName
+  MetaData.time_utc: TimeUtc
+  SubscribeMessageID: SubscribeMessageID
+  MessageID: MessageID
+  RepeatIndicator: RepeatIndicator
+  Valid: Valid
+  Geom: Geom
+  MessageType: MessageType
+  Message.PositionReport.Cog: Cog
+  Message.PositionReport.CommunicationState: CommunicationState
+  Message.PositionReport.Latitude: Latitude
+  Message.PositionReport.Longitude: Longitude
+  Message.PositionReport.MessageID: MessageID
+  Message.PositionReport.NavigationalStatus: NavigationalStatus
+  Message.PositionReport.PositionAccuracy: PositionAccuracy
+  Message.PositionReport.Raim: Raim
+  Message.PositionReport.RateOfTurn: RateOfTurn
+  Message.PositionReport.RepeatIndicator: RepeatIndicator
+  Message.PositionReport.Sog: Sog
+  Message.PositionReport.Spare: Spare
+  Message.PositionReport.SpecialManoeuvreIndicator: SpecialManoeuvreIndicator
+  Message.PositionReport.Timestamp: Timestamp
+  Message.PositionReport.TrueHeading: TrueHeading
+  Message.PositionReport.UserID: UserID
+  Message.PositionReport.Valid: Valid
+  PositionReportID: PositionReportID
+
+
+StaticDataReport_mapping:
+  ShipCommonDataID: ShipCommonDataID
+  MetaData.MMSI: MMSI
+  MessageType: MessageType
+  MetaData.ShipName: ShipName
+  TimeUtc: TimeUtc
+  Message.StaticDataReport.MessageID: MessageID
+  Message.StaticDataReport.RepeatIndicator: RepeatIndicator
+  Message.StaticDataReport.Valid: Valid
+  Geom: Geom
+  SubscribeMessageID: SubscribeMessageID
+  Message.StaticDataReport.PartNumber: PartNumber
+  Message.StaticDataReport.ReportA.Name: ReportAName
+  Message.StaticDataReport.ReportB.CallSign: CallSign
+  Message.StaticDataReport.ReportB.Dimension.A: DimensionA
+  Message.StaticDataReport.ReportB.Dimension.B: DimensionB
+  Message.StaticDataReport.ReportB.Dimension.C: DimensionC
+  Message.StaticDataReport.ReportB.Dimension.D: DimensionD
+  Message.StaticDataReport.ReportB.FixType: FixType
+  Message.StaticDataReport.ReportB.ShipType: ShipType
+  Message.StaticDataReport.ReportB.Spare: Spare
+  Message.StaticDataReport.ReportB.VenderIDModel: VenderIDModel
+  Message.StaticDataReport.ReportB.VenderIDSerial: VenderIDSerial
+  Message.StaticDataReport.ReportB.VendorIDName: VendorIDName
+  Message.StaticDataReport.Reserved: Reserved
+  Message.StaticDataReport.ReportA.Valid: ReportAValid
+  Message.StaticDataReport.ReportB.Valid: ReportBValid
+  Message.StaticDataReport.UserID: UserID
+  
+
+
+StandardClassBPositionReport_mapping:
+  ShipCommonDataID: ShipCommonDataID
+  MetaData.MMSI: MMSI
+  MessageType: MessageType
+  MetaData.ShipName: ShipName
+  TimeUtc: TimeUtc
+  Message.StandardClassBPositionReport.MessageID: MessageID
+  Message.StandardClassBPositionReport.RepeatIndicator: RepeatIndicator
+  Message.StandardClassBPositionReport.Valid: Valid
+  Geom: Geom
+  SubscribeMessageID: SubscribeMessageID
+  Message.StandardClassBPositionReport.AssignedMode: AssignedMode
+  Message.StandardClassBPositionReport.ClassBBand: ClassBBand
+  Message.StandardClassBPositionReport.ClassBDisplay: ClassBDisplay
+  Message.StandardClassBPositionReport.ClassBDsc: ClassBDsc
+  Message.StandardClassBPositionReport.ClassBMsg22: ClassBMsg22
+  Message.StandardClassBPositionReport.ClassBUnit: ClassBUnit
+  Message.StandardClassBPositionReport.Cog: Cog
+  Message.StandardClassBPositionReport.CommunicationState: CommunicationState
+  Message.StandardClassBPositionReport.CommunicationStateIsItdma: CommunicationStateIsItdma
+  Message.StandardClassBPositionReport.PositionAccuracy: PositionAccuracy
+  Message.StandardClassBPositionReport.Raim: Raim
+  Message.StandardClassBPositionReport.Sog: Sog
+  Message.StandardClassBPositionReport.Spare1: Spare1
+  Message.StandardClassBPositionReport.Spare2: Spare2
+  Message.StandardClassBPositionReport.Timestamp: Timestamp
+  Message.StandardClassBPositionReport.TrueHeading: TrueHeading
+
+
+ShipStaticData_mapping:
+  ShipCommonDataID: ShipCommonDataID
+  MetaData.MMSI: MMSI
+  MessageType: MessageType
+  MetaData.ShipName: ShipName
+  TimeUtc: TimeUtc
+  Message.ShipStaticData.MessageID: MessageID
+  Message.ShipStaticData.RepeatIndicator: RepeatIndicator
+  Message.ShipStaticData.Valid: Valid
+  Geom: Geom
+  SubscribeMessageID: SubscribeMessageID
+  Message.ShipStaticData.AisVersion: AisVersion
+  Message.ShipStaticData.CallSign: CallSign
+  Message.ShipStaticData.Destination: Destination
+  Message.ShipStaticData.Dimension.A: DimensionA
+  Message.ShipStaticData.Dimension.B: DimensionB
+  Message.ShipStaticData.Dimension.C: DimensionC
+  Message.ShipStaticData.Dimension.D: DimensionD
+  Message.ShipStaticData.Dte: Dte
+  Message.ShipStaticData.Eta.Day: EtaDay
+  Message.ShipStaticData.Eta.Hour: EtaHour
+  Message.ShipStaticData.Eta.Minute: EtaMinute
+  Message.ShipStaticData.Eta.Month: EtaMonth
+  Message.ShipStaticData.FixType: FixType
+  Message.ShipStaticData.ImoNumber: ImoNumber
+  Message.ShipStaticData.MaximumStaticDraught: MaximumStaticDraught
+  Message.ShipStaticData.Name: Name
+  Message.ShipStaticData.RepeatIndicator: RepeatIndicator
+  Message.ShipStaticData.Spare: Spare
+  Message.ShipStaticData.Type: ShipType

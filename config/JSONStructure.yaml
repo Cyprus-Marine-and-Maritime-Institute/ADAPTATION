@@ -1,0 +1,383 @@
+MetaData:
+  DBStoreVariables:
+    - MessageType
+    - MetaData.MMSI
+    - MetaData.MMSI_String
+    - MetaData.ShipName
+    - MetaData.latitude
+    - MetaData.longitude
+    - MetaData.time_utc
+    - SubscribeMessageID
+  HashVariables:
+    - MetaData.MMSI
+    - MetaData.latitude
+    - MetaData.longitude
+    - MessageType
+
+
+CommonShipData:
+  DBStoreVariables:
+    - ShipCommonDataID
+    - MetaData.MMSI
+    - MessageType
+    - MetaData.ShipName
+    - MetaData.time_utc
+    - SubscribeMessageID
+    - Message.*.MessageID
+    - Message.*.RepeatIndicator
+    - Message.*.Valid
+    - Geom
+
+PositionReport:
+  DBStoreVariables:
+    - ShipCommonDataID
+    - Message.PositionReport.Cog
+    - Message.PositionReport.CommunicationState
+    - Message.PositionReport.NavigationalStatus
+    - Message.PositionReport.PositionAccuracy
+    - Message.PositionReport.Raim
+    - Message.PositionReport.RateOfTurn
+    - Message.PositionReport.Sog
+    - Message.PositionReport.Spare
+    - Message.PositionReport.SpecialManoeuvreIndicator
+    - Message.PositionReport.Timestamp
+    - Message.PositionReport.TrueHeading
+
+StaticDataReport:
+  DBStoreVariables:
+    - ShipCommonDataID
+    - Message.StaticDataReport.PartNumber
+    - Message.StaticDataReport.ReportA.Name
+    - Message.StaticDataReport.ReportB.CallSign
+    - Message.StaticDataReport.ReportB.Dimension.A
+    - Message.StaticDataReport.ReportB.Dimension.B
+    - Message.StaticDataReport.ReportB.Dimension.C
+    - Message.StaticDataReport.ReportB.Dimension.D
+    - Message.StaticDataReport.ReportB.FixType
+    - Message.StaticDataReport.ReportB.ShipType
+    - Message.StaticDataReport.ReportB.Spare
+    - Message.StaticDataReport.ReportB.VenderIDModel
+    - Message.StaticDataReport.ReportB.VenderIDSerial
+    - Message.StaticDataReport.ReportB.VendorIDName
+    - Message.StaticDataReport.Reserved
+
+DataLinkManagementMessage:
+  DBStoreVariables:
+    - MetaData.MMSI
+    - MessageType
+    - Message.DataLinkManagementMessage.RepeatIndicator
+    - MetaData.ShipName
+    - Geom
+    - MetaData.time_utc
+    - SubscribeMessageID
+    - hash
+    - Message.DataLinkManagementMessage.MessageID
+    - Message.DataLinkManagementMessage.Spare
+    - Message.DataLinkManagementMessage.Valid
+    - Message.DataLinkManagementMessage.Data.0.Increment
+    - Message.DataLinkManagementMessage.Data.0.Offset
+    - Message.DataLinkManagementMessage.Data.0.TimeOut
+    - Message.DataLinkManagementMessage.Data.0.Valid
+    - Message.DataLinkManagementMessage.Data.0.integerOfSlots
+    - Message.DataLinkManagementMessage.Data.1.Increment
+    - Message.DataLinkManagementMessage.Data.1.Offset
+    - Message.DataLinkManagementMessage.Data.1.TimeOut
+    - Message.DataLinkManagementMessage.Data.1.Valid
+    - Message.DataLinkManagementMessage.Data.1.integerOfSlots
+    - Message.DataLinkManagementMessage.Data.2.Increment
+    - Message.DataLinkManagementMessage.Data.2.Offset
+    - Message.DataLinkManagementMessage.Data.2.TimeOut
+    - Message.DataLinkManagementMessage.Data.2.Valid
+    - Message.DataLinkManagementMessage.Data.2.integerOfSlots
+    - Message.DataLinkManagementMessage.Data.3.Increment
+    - Message.DataLinkManagementMessage.Data.3.Offset
+    - Message.DataLinkManagementMessage.Data.3.TimeOut
+    - Message.DataLinkManagementMessage.Data.3.Valid
+    - Message.DataLinkManagementMessage.Data.3.integerOfSlots
+  HashVariables:
+    - Message.DataLinkManagementMessage.UserID
+    - Message.DataLinkManagementMessage.Data.0.Increment
+    - Message.DataLinkManagementMessage.Data.0.Offset
+    - Message.DataLinkManagementMessage.Data.0.TimeOut
+    - Message.DataLinkManagementMessage.Data.0.Valid
+    - Message.DataLinkManagementMessage.Data.0.integerOfSlots
+    - Message.DataLinkManagementMessage.Data.1.Increment
+    - Message.DataLinkManagementMessage.Data.1.Offset
+    - Message.DataLinkManagementMessage.Data.1.TimeOut
+    - Message.DataLinkManagementMessage.Data.1.Valid
+    - Message.DataLinkManagementMessage.Data.1.integerOfSlots
+    - Message.DataLinkManagementMessage.Data.2.Increment
+    - Message.DataLinkManagementMessage.Data.2.Offset
+    - Message.DataLinkManagementMessage.Data.2.TimeOut
+    - Message.DataLinkManagementMessage.Data.2.Valid
+    - Message.DataLinkManagementMessage.Data.2.integerOfSlots
+    - Message.DataLinkManagementMessage.Data.3.Increment
+    - Message.DataLinkManagementMessage.Data.3.Offset
+    - Message.DataLinkManagementMessage.Data.3.TimeOut
+    - Message.DataLinkManagementMessage.Data.3.Valid
+    - Message.DataLinkManagementMessage.Data.3.integerOfSlots
+
+StandardClassBPositionReport:
+  DBStoreVariables:
+    - MetaData.MMSI
+    - MessageType
+    - MetaData.ShipName
+    - MetaData.time_utc
+    - SubscribeMessageID
+    - Message.StandardClassBPositionReport.MessageID
+    - Message.StandardClassBPositionReport.AssignedMode
+    - Message.StandardClassBPositionReport.ClassBBand
+    - Message.StandardClassBPositionReport.ClassBDisplay
+    - Message.StandardClassBPositionReport.ClassBDsc
+    - Message.StandardClassBPositionReport.ClassBMsg22
+    - Message.StandardClassBPositionReport.ClassBUnit
+    - Message.StandardClassBPositionReport.Cog
+    - Message.StandardClassBPositionReport.CommunicationState
+    - Message.StandardClassBPositionReport.CommunicationStateIsItdma
+    - Message.StandardClassBPositionReport.Latitude
+    - Message.StandardClassBPositionReport.Longitude
+    - Message.StandardClassBPositionReport.PositionAccuracy
+    - Message.StandardClassBPositionReport.Raim
+    - Message.StandardClassBPositionReport.RepeatIndicator
+    - Message.StandardClassBPositionReport.Sog
+    - Message.StandardClassBPositionReport.Spare1
+    - Message.StandardClassBPositionReport.Spare2
+    - Message.StandardClassBPositionReport.Timestamp
+    - Message.StandardClassBPositionReport.TrueHeading
+    - Message.StandardClassBPositionReport.Valid
+  HashVariables:
+    - Message.StandardClassBPositionReport.UserID
+    - Message.StandardClassBPositionReport.Sog
+    - Message.StandardClassBPositionReport.PositionAccuracy
+    - Message.StandardClassBPositionReport.Latitude
+    - Message.StandardClassBPositionReport.Longitude
+    - Message.StandardClassBPositionReport.Cog
+    - Message.StandardClassBPositionReport.TrueHeading
+    - Message.StandardClassBPositionReport.Timestamp
+    - Message.StandardClassBPositionReport.ClassBUnit
+    - Message.StandardClassBPositionReport.ClassBMsg22
+    - Message.StandardClassBPositionReport.ClassBDsc
+    - Message.StandardClassBPositionReport.ClassBDisplay
+    - Message.StandardClassBPositionReport.ClassBBand
+    - Message.StandardClassBPositionReport.CommunicationState
+    - Message.StandardClassBPositionReport.CommunicationStateIsItdma
+    - Message.StandardClassBPositionReport.Raim
+    - Message.StandardClassBPositionReport.RepeatIndicator
+    - Message.StandardClassBPositionReport.Latitude
+    - Message.StandardClassBPositionReport.Longitude
+    - Message.StandardClassBPositionReport.Valid
+  CheckVariables:
+    - MetaData.MMSI
+    - Message.StandardClassBPositionReport.MessageID
+    - Message.StandardClassBPositionReport.AssignedMode
+    - Message.StandardClassBPositionReport.ClassBBand
+    - Message.StandardClassBPositionReport.ClassBDisplay
+    - Message.StandardClassBPositionReport.ClassBDsc
+    - Message.StandardClassBPositionReport.ClassBMsg22
+    - Message.StandardClassBPositionReport.ClassBUnit
+    - Message.StandardClassBPositionReport.Cog
+    - Message.StandardClassBPositionReport.CommunicationState
+    - Message.StandardClassBPositionReport.CommunicationStateIsItdma
+    - Message.StandardClassBPositionReport.Latitude
+    - Message.StandardClassBPositionReport.Longitude
+    - Message.StandardClassBPositionReport.PositionAccuracy
+    - Message.StandardClassBPositionReport.Raim
+    - Message.StandardClassBPositionReport.RepeatIndicator
+    - Message.StandardClassBPositionReport.Sog
+    - Message.StandardClassBPositionReport.Spare1
+    - Message.StandardClassBPositionReport.Spare2
+    - Message.StandardClassBPositionReport.Timestamp
+    - Message.StandardClassBPositionReport.TrueHeading
+    - Message.StandardClassBPositionReport.Valid
+
+ShipStaticData:
+  DBStoreVariables:
+    - ShipCommonDataID
+    - Message.ShipStaticData.AisVersion
+    - Message.ShipStaticData.CallSign
+    - Message.ShipStaticData.Destination
+    - Message.ShipStaticData.Dimension.A
+    - Message.ShipStaticData.Dimension.B
+    - Message.ShipStaticData.Dimension.C
+    - Message.ShipStaticData.Dimension.D
+    - Message.ShipStaticData.Dte
+    - Message.ShipStaticData.Eta.Day
+    - Message.ShipStaticData.Eta.Hour
+    - Message.ShipStaticData.Eta.Minute
+    - Message.ShipStaticData.Eta.Month
+    - Message.ShipStaticData.FixType
+    - Message.ShipStaticData.ImoNumber
+    - Message.ShipStaticData.MaximumStaticDraught
+    - Message.ShipStaticData.Name
+    - Message.ShipStaticData.RepeatIndicator
+    - Message.ShipStaticData.Spare
+    - Message.ShipStaticData.Type
+    - Message.ShipStaticData.Valid
+
+
+BaseStationReport:
+  DBStoreVariables:
+    - MetaData.MMSI
+    - MessageType
+    - MetaData.ShipName
+    - MetaData.time_utc
+    - SubscribeMessageID
+    - Message.BaseStationReport.MessageID
+    - Message.BaseStationReport.CommunicationState
+    - Message.BaseStationReport.FixType
+    - Message.BaseStationReport.Latitude
+    - Message.BaseStationReport.LongRangeEnable
+    - Message.BaseStationReport.Longitude
+    - Message.BaseStationReport.PositionAccuracy
+    - Message.BaseStationReport.Raim
+    - Message.BaseStationReport.RepeatIndicator
+    - Message.BaseStationReport.Spare
+    - Message.BaseStationReport.UtcDay
+    - Message.BaseStationReport.UtcHour
+    - Message.BaseStationReport.UtcMinute
+    - Message.BaseStationReport.UtcMonth
+    - Message.BaseStationReport.UtcSecond
+    - Message.BaseStationReport.UtcYear
+    - Message.BaseStationReport.Valid
+  HashVariables:
+    - Message.BaseStationReport.UserID
+    - Message.BaseStationReport.UtcYear
+    - Message.BaseStationReport.UtcMonth
+    - Message.BaseStationReport.UtcDay
+    - Message.BaseStationReport.UtcHour
+    - Message.BaseStationReport.UtcMinute
+    - Message.BaseStationReport.UtcSecond
+    - Message.BaseStationReport.PositionAccuracy
+    - Message.BaseStationReport.Longitude
+    - Message.BaseStationReport.Latitude
+    - Message.BaseStationReport.FixType
+    - Message.BaseStationReport.LongRangeEnable
+    - Message.BaseStationReport.Raim
+    - Message.BaseStationReport.CommunicationState
+  CheckVariables:
+    - MetaData.MMSI
+    - Message.BaseStationReport.MessageID
+    - Message.BaseStationReport.CommunicationState
+    - Message.BaseStationReport.FixType
+    - Message.BaseStationReport.Latitude
+    - Message.BaseStationReport.LongRangeEnable
+    - Message.BaseStationReport.Longitude
+    - Message.BaseStationReport.PositionAccuracy
+    - Message.BaseStationReport.Raim
+    - Message.BaseStationReport.RepeatIndicator
+    - Message.BaseStationReport.Spare
+    - Message.BaseStationReport.UtcDay
+    - Message.BaseStationReport.UtcHour
+    - Message.BaseStationReport.UtcMinute
+    - Message.BaseStationReport.UtcMonth
+    - Message.BaseStationReport.UtcSecond
+    - Message.BaseStationReport.UtcYear
+    - Message.BaseStationReport.Valid
+
+
+AidsToNavigationReport:
+  DBStoreVariables:
+    - MetaData.MMSI
+    - MessageType
+    - MetaData.ShipName
+    - MetaData.time_utc
+    - SubscribeMessageID
+    - Message.AidsToNavigationReport.MessageID
+    - Message.AidsToNavigationReport.AssignedMode
+    - Message.AidsToNavigationReport.AtoN
+    - Message.AidsToNavigationReport.Dimension.A
+    - Message.AidsToNavigationReport.Dimension.B
+    - Message.AidsToNavigationReport.Dimension.C
+    - Message.AidsToNavigationReport.Dimension.D
+    - Message.AidsToNavigationReport.Fixtype
+    - Message.AidsToNavigationReport.Latitude
+    - Message.AidsToNavigationReport.Longitude
+    - Message.AidsToNavigationReport.Name
+    - Message.AidsToNavigationReport.NameExtension
+    - Message.AidsToNavigationReport.OffPosition
+    - Message.AidsToNavigationReport.PositionAccuracy
+    - Message.AidsToNavigationReport.Raim
+    - Message.AidsToNavigationReport.RepeatIndicator
+    - Message.AidsToNavigationReport.Spare
+    - Message.AidsToNavigationReport.Timestamp
+    - Message.AidsToNavigationReport.Type
+    - Message.AidsToNavigationReport.Valid
+    - Message.AidsToNavigationReport.VirtualAtoN
+  HashVariables:
+    - Message.AidsToNavigationReport.UserID
+    - Message.AidsToNavigationReport.Type
+    - Message.AidsToNavigationReport.Name
+    - Message.AidsToNavigationReport.PositionAccuracy
+    - Message.AidsToNavigationReport.Latitude
+    - Message.AidsToNavigationReport.Longitude
+    - Message.AidsToNavigationReport.Dimension.A
+    - Message.AidsToNavigationReport.Dimension.B
+    - Message.AidsToNavigationReport.Dimension.C
+    - Message.AidsToNavigationReport.Dimension.D
+    - Message.AidsToNavigationReport.Fixtype
+    - Message.AidsToNavigationReport.Timestamp
+    - Message.AidsToNavigationReport.OffPosition
+    - Message.AidsToNavigationReport.AtoN
+    - Message.AidsToNavigationReport.Raim
+    - Message.AidsToNavigationReport.VirtualAtoN
+    - Message.AidsToNavigationReport.AssignedMode
+    - Message.AidsToNavigationReport.NameExtension
+  CheckVariables:
+    - Message.AidsToNavigationReport.MessageID
+    - Message.AidsToNavigationReport.AssignedMode
+    - Message.AidsToNavigationReport.AtoN
+    - Message.AidsToNavigationReport.Dimension.A
+    - Message.AidsToNavigationReport.Dimension.B
+    - Message.AidsToNavigationReport.Dimension.C
+    - Message.AidsToNavigationReport.Dimension.D
+    - Message.AidsToNavigationReport.Fixtype
+    - Message.AidsToNavigationReport.Latitude
+    - Message.AidsToNavigationReport.Longitude
+    - Message.AidsToNavigationReport.Name
+    - Message.AidsToNavigationReport.NameExtension
+    - Message.AidsToNavigationReport.OffPosition
+    - Message.AidsToNavigationReport.PositionAccuracy
+    - Message.AidsToNavigationReport.Raim
+    - Message.AidsToNavigationReport.RepeatIndicator
+    - Message.AidsToNavigationReport.Spare
+    - Message.AidsToNavigationReport.Timestamp
+    - Message.AidsToNavigationReport.Type
+    - Message.AidsToNavigationReport.Valid
+    - Message.AidsToNavigationReport.VirtualAtoN
+
+AddressedSafetyMessage:
+  DBStoreVariables:
+    - MetaData.MMSI
+    - MessageType
+    - MetaData.ShipName
+    - MetaData.latitude
+    - MetaData.longitude
+    - MetaData.time_utc
+    - SubscribeMessageID
+    - Message.AddressedSafetyMessage.MessageID
+    - Message.AddressedSafetyMessage.DestinationID
+    - Message.AddressedSafetyMessage.RepeatIndicator
+    - Message.AddressedSafetyMessage.Retransmission
+    - Message.AddressedSafetyMessage.Sequenceinteger
+    - Message.AddressedSafetyMessage.Spare
+    - Message.AddressedSafetyMessage.Text
+    - Message.AddressedSafetyMessage.Valid
+  HashVariables:
+    - Message.AddressedSafetyMessage.UserID
+    - Message.AddressedSafetyMessage.Sequenceinteger
+    - Message.AddressedSafetyMessage.DestinationID
+    - Message.AddressedSafetyMessage.Text
+  CheckVariables:
+    - MetaData.MMSI
+    - Message.AddressedSafetyMessage.MessageID
+    - Message.AddressedSafetyMessage.DestinationID
+    - Message.AddressedSafetyMessage.RepeatIndicator
+    - Message.AddressedSafetyMessage.Retransmission
+    - Message.AddressedSafetyMessage.Sequenceinteger
+    - Message.AddressedSafetyMessage.Spare
+    - Message.AddressedSafetyMessage.Text
+    - Message.AddressedSafetyMessage.Valid
+
+SubscribeMessage:
+  DBStoreVariables:
+  
