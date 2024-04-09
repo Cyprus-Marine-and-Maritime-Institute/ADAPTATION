@@ -4,12 +4,12 @@ __pycache__
 *.pyc
 *.pyo
 
+*.log
+*.xml
+*.txt
+*.7z
 
-
-
-
-
-
+.env
 *.json
 dataCSV_added/
 *.csv
