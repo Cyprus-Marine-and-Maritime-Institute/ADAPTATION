@@ -23,14 +23,14 @@ import pandas as pd
 from pandas import json_normalize
 import yaml
 from uuid import UUID
-save_direrctory="/home/charalambos/Documents/Projects/ADAPTATION/dataCSV"
-json_save_direrctory="/home/charalambos/Documents/Projects/ADAPTATION/dataJSON"
+save_direrctory="/data/dataToInsert/dataCSV"
+json_save_direrctory="/data/dataToInsert/dataJSON"
 common_types = ["PositionReport", "ShipStaticData","StandardClassBPositionReport","StaticDataReport"]
 
 
-with open("/home/charalambos/Documents/Projects/ADAPTATION/config/NameMappings.yaml") as f:
+with open("./config/NameMappings.yaml") as f:
     mapping=yaml.safe_load(f)
-with open("/home/charalambos/Documents/Projects/ADAPTATION/config/JSONStructure.yaml") as f:
+with open("./config/JSONStructure.yaml") as f:
     val=yaml.safe_load(f)
 
 def generate_hash(dt, ValuesStructure):
@@ -198,14 +198,11 @@ from datetime import datetime
 
 today = datetime.now().strftime("%Y-%m-%d")
 if not LOGS_PATH:
-    LOGS_PATH = "/home/charalambos/Documents/Projects/ADAPTATION/logs"
-os.makedirs(LOGS_PATH, exist_ok=True)
-logging.basicConfig(
-    filename=f'{LOGS_PATH}/{today}_stream.log',
-    filemode='a',
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',  # include asctime for timestamps
-    level=logging.INFO  # This will log both INFO and ERROR messages, as ERROR is a higher level than INFO
-)
+    LOGS_PATH = "/data/ais_collection/logs"
+# Now your makedirs call
+
+# os.makedirs(LOGS_PATH, exist_ok=True)
+
 
 
 class AISstream():
@@ -282,10 +279,17 @@ class AISstream():
         while True:
             try:
                 async with websockets.connect("wss://stream.aisstream.io/v0/stream") as websocket:
-                    copyofsub={
-                        "APIKey": self.subscribe_message["APIKey"],
-                        "BoundingBoxes": self.subscribe_message["BoundingBoxes"],
-                    }
+                    if "APIKey" in self.subscribe_message and "BoundingBoxes" in self.subscribe_message:
+                        copyofsub={
+                            "APIKey": self.subscribe_message["APIKey"],
+                            "BoundingBoxes": self.subscribe_message["BoundingBoxes"],
+                        }
+                    else:
+                        copyofsub={
+                            "APIKey": "key",
+                            "BoundingBoxes": "bg"
+                        }
+                        
                     print("Sending subscribe message")
                     self.subscribe_message_json = json.dumps(copyofsub)
                     await websocket.send(self.subscribe_message_json)
@@ -385,7 +389,22 @@ class AISstream():
 
 
 if __name__ == "__main__":
-    f=open("/home/charalambos/Documents/Projects/ADAPTATION/PortsBoundingBoxes.json")
+    # print("Current User",os.getlogin())
+    os.makedirs(save_direrctory, exist_ok=True)
+    os.makedirs(json_save_direrctory, exist_ok=True)
+    os.makedirs(LOGS_PATH, exist_ok=True)
+    os.makedirs(LOGS_PATH, exist_ok=True)
+    with open('/home/charalambos/Documents/ADAPTATION/Collector/ADAPTATION/testttt.txt', 'w') as f:
+        f.write("test")
+        
+    # list the files in the save directory
+    logging.basicConfig(
+    filename=f'{LOGS_PATH}/{today}_stream.log',
+    filemode='a',
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',  # include asctime for timestamps
+    level=logging.INFO  # This will log both INFO and ERROR messages, as ERROR is a higher level than INFO
+)
+    f=open("./PortsBoundingBoxes.json")
     ports_cords=json.load(f)
     f.close()
     try:
@@ -407,6 +426,7 @@ if __name__ == "__main__":
         ports=[port for port in ports_cords.values()]
         port_names=[port for port in ports_cords.keys()]
     api_key = os.getenv("API_KEY")
+    print(api_key)
     subscribe_message = {
             "APIKey": api_key,
             # "BoundingBoxes": [[[25.835302, -80.207729], [25.602700, -79.879297]], [[33.772292, -118.356139], [33.673490, -118.095731]] ],
