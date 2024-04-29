@@ -278,6 +278,8 @@ class AISstream():
         total=tqdm(range(self.checkPoint))
         while True:
             try:
+                # throw test error to check if the error handling works
+                # raise Exception("Test error")
                 async with websockets.connect("wss://stream.aisstream.io/v0/stream") as websocket:
                     if "APIKey" in self.subscribe_message and "BoundingBoxes" in self.subscribe_message:
                         copyofsub={
@@ -285,10 +287,7 @@ class AISstream():
                             "BoundingBoxes": self.subscribe_message["BoundingBoxes"],
                         }
                     else:
-                        copyofsub={
-                            "APIKey": "key",
-                            "BoundingBoxes": "bg"
-                        }
+                        exit()
                         
                     print("Sending subscribe message")
                     self.subscribe_message_json = json.dumps(copyofsub)
@@ -320,6 +319,7 @@ class AISstream():
             except (websockets.exceptions.ConnectionClosedError, asyncio.exceptions.CancelledError):
                 print("Connection lost. Reconnecting...")
                 logging.error("Connection lost. Reconnecting...", exc_info=True)
+                exit()
                 await asyncio.sleep(2)  # Reconnection wait time
                 
             except Exception as e:
@@ -330,7 +330,7 @@ class AISstream():
                 
                 logging.error("Error: %s", e, exc_info=True)
                 
-
+                exit()
                 await asyncio.sleep(2)
 
     def checkSize(self, messages):
@@ -383,6 +383,7 @@ class AISstream():
                 logging.info("Dumped to JSON: %s", "data_"+str(time_now)+".json")
             except Exception as e:
                 logging.error("Error at dumping to json", exc_info=True)
+                exit()
             file_paths=jsonToCsv(messages)
             
             self.clearArr(temp_data_index)
